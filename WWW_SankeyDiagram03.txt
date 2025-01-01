@@ -1,0 +1,20 @@
+import matplotlib.pyplot as plt
+from matplotlib.sankey import Sankey
+
+# Mock data for the Sankey diagram to illustrate thematic flows
+theme_labels = ['Wealth Disparities', 'Societal Conflict', 'Human Suffering', 'Social Turmoil', 'Existential Crisis']
+flows = [0.8, 0.5, -0.3, -0.5, -0.5]  # Positive for input, negative for output
+orientations = [0, 1, 1, -1, 0]  # 0 for straight, 1 for up, -1 for down
+
+fig = plt.figure(figsize=(10, 8))
+ax = fig.add_subplot(1, 1, 1, xticks=[], yticks=[],
+                     title="Sankey Diagram: Flow of Thematic Elements")
+sankey = Sankey(ax=ax, unit=None)
+sankey.add(flows=flows, labels=theme_labels, orientations=orientations, facecolor='paleturquoise', pathlengths=[0.5]*len(flows))
+diagrams = sankey.finish()
+for diagram in diagrams:
+    for text in diagram.texts:
+        text.set_fontsize(10)
+        text.set_color('blue')
+plt.title('Sankey Diagram of Thematic Transitions in Lyrics Analysis')
+plt.show()

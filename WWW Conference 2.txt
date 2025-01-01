@@ -1,0 +1,30 @@
+import numpy as np
+
+# Mock data for themes' frequencies and co-occurrences
+theme_frequencies = [120, 80, 150, 90, 110, 100, 130, 70, 60, 50]
+theme_names = list(themes.values())
+co_occurrences = np.random.randint(0, 100, size=(10, 10))
+
+# Create a bar chart
+plt.figure(figsize=(12, 6))
+plt.bar(theme_names, theme_frequencies, color='skyblue')
+plt.xticks(rotation=45, ha='right')
+plt.title('Frequency of Each Theme in Songs')
+plt.ylabel('Frequency')
+plt.show()
+
+# Create a heatmap
+plt.figure(figsize=(10, 8))
+plt.imshow(co_occurrences, cmap='hot', interpolation='none')
+plt.colorbar()
+plt.xticks(ticks=np.arange(len(theme_names)), labels=theme_names, rotation=45, ha='right')
+plt.yticks(ticks=np.arange(len(theme_names)), labels=theme_names)
+plt.title('Heatmap of Theme Co-occurrences')
+plt.show()
+
+# Create a pie chart
+plt.figure(figsize=(10, 8))
+plt.pie(theme_frequencies, labels=theme_names, autopct='%1.1f%%', startangle=140, colors=plt.cm.Pastel1.colors)
+plt.title('Distribution of Themes in Songs')
+plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+plt.show()

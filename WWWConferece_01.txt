@@ -1,0 +1,47 @@
+import matplotlib.pyplot as plt
+import networkx as nx
+
+# Create a graph object
+G = nx.Graph()
+
+# Define the nodes with themes as described in the methodology
+themes = {
+    "V_palaces": "Wealth and Power Disparities",
+    "V_enemy_of_man": "Societal Conflict",
+    "V_wealth_hungry": "Societal Greed",
+    "V_wounds": "Human Suffering",
+    "V_thirst": "Unmet Needs",
+    "V_confusion": "Social Turmoil",
+    "V_sadness": "State of Despair",
+    "V_misery_world": "Existential Crisis",
+    "V_dead_colony": "Societal Decay",
+    "V_cheap_death": "Low Value of Life"
+}
+
+# Add nodes to the graph
+for node, description in themes.items():
+    G.add_node(description)
+
+# Define connections between nodes based on thematic overlaps
+edges = [
+    ("Wealth and Power Disparities", "Societal Greed"),
+    ("Wealth and Power Disparities", "Low Value of Life"),
+    ("Societal Conflict", "Social Turmoil"),
+    ("Human Suffering", "State of Despair"),
+    ("Unmet Needs", "Existential Crisis"),
+    ("State of Despair", "Existential Crisis"),
+    ("Existential Crisis", "Societal Decay"),
+    ("Societal Decay", "Low Value of Life"),
+    ("Social Turmoil", "State of Despair")
+]
+
+# Add edges to the graph
+G.add_edges_from(edges)
+
+# Draw the graph
+pos = nx.spring_layout(G, seed=42)  # for consistent layout
+plt.figure(figsize=(12, 8))
+nx.draw(G, pos, with_labels=True, node_color='skyblue', node_size=3500, edge_color='gray', linewidths=0.5, font_size=10, font_weight='bold')
+plt.title('Thematic Connections in Societal Theme Analysis')
+plt.show()
+
